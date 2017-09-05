@@ -1,4 +1,4 @@
-package com.example;
+package com.jokewizard;
 
 public class JokeWizard {
 
