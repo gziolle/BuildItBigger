@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements JokeAsyncTask.Asy
 
     public void tellJoke(View view) {
         createProgressDialog();
-        JokeAsyncTask task = new JokeAsyncTask(this, this);
+        JokeAsyncTask task = new JokeAsyncTask(this);
         task.execute();
     }
 
