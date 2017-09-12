@@ -12,7 +12,7 @@ import com.gziolle.jokelibrary.JokeUtils;
 import com.jokewizard.JokeWizard;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JokeAsyncTask.AsyncResponse {
 
 
     @Override
@@ -45,11 +45,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
+        JokeAsyncTask task = new JokeAsyncTask(this, this);
+        task.execute();
+    }
 
-        JokeWizard wizard = new JokeWizard();
-
+    @Override
+    public void updateJoke(String joke) {
         Intent intent = new Intent(this, JokeActivity.class);
-        intent.putExtra(JokeUtils.JOKE, wizard.getJoke());
+        intent.putExtra(JokeUtils.JOKE, joke);
 
         startActivity(intent);
     }

@@ -4,13 +4,12 @@
    https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints
 */
 
-package com.gziolle.builditbigger;
+package com.gziolle.jokeserver;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-
-import javax.inject.Named;
+import com.jokewizard.JokeWizard;
 
 /**
  * An endpoint class we are exposing
@@ -29,11 +28,10 @@ public class JokeEndpoint {
     /**
      * A simple endpoint method that takes a name and says Hi back
      */
-    @ApiMethod(name = "getJoke")
-    public JokeBean getJoke(@Named("name") String name) {
+    @ApiMethod(name = "tellJoke")
+    public JokeBean tellJoke() {
         JokeBean response = new JokeBean();
-        response.setData("Hi, " + name);
-
+        response.setJoke(JokeWizard.getJoke());
         return response;
     }
 
