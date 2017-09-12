@@ -18,7 +18,8 @@ public class JokeWizard {
             "A woman in a bikini reveals about 90% of her body.... and yet most men are so polite they only look at the covered parts."};
 
     public static String getJoke(){
-        return mJokes[(int) Math.random() * mJokes.length];
+        int index = (int) (Math.random() * mJokes.length);
+        return mJokes[index];
     }
 
 }
