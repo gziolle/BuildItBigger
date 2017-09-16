@@ -15,13 +15,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-    }
-}
-
-class CustomTestTask extends DefaultTask{
-    @TaskAction
-    public void startRunStop(){
-
+        maven{
+            url "https://maven.google.com"
+        }
     }
 }
 

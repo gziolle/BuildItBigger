@@ -50,7 +50,8 @@ public class JokeAsyncTask extends AsyncTask<Void, Void, String>{
             jokeService = builder.build();
         }
         try {
-            return jokeService.tellJoke().execute().getJoke();
+            String joke = jokeService.tellJoke().execute().getJoke();
+            return joke;
         } catch (IOException e) {
             return e.getMessage();
         }

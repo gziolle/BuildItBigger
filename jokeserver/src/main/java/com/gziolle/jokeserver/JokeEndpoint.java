@@ -34,5 +34,4 @@ public class JokeEndpoint {
         response.setJoke(JokeWizard.getJoke());
         return response;
     }
-
 }
