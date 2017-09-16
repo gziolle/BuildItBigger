@@ -17,3 +17,39 @@ allprojects {
         jcenter()
     }
 }
+
+class CustomTestTask extends DefaultTask{
+    @TaskAction
+    public void startRunStop(){
+
+    }
+}
+
+task customTestTask{
+    dependsOn(['startGCEServer','runTests','shutdownServer'])
+}
+
+task startGCEServer{
+    dependsOn ':jokeserver:appengineRun'
+    evaluationDependsOn(":jokeserver")
+    project(':jokeserver').appengine.daemon = true
+    doLast{
+        println "start GCE server"
+    }
+}
+
+task runTests{
+    dependsOn ':app:connectedAndroidTest'
+    mustRunAfter "startGCEServer"
+    doLast{
+        println("run tests")
+    }
+}
+
+task shutdownServer {
+    dependsOn ':jokeserver:appengineStop'
+    mustRunAfter "runTests"
+    doLast{
+        println("stop server")
+    }
+}
