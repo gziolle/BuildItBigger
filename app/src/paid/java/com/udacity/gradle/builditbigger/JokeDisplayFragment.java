@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -40,7 +41,10 @@ public class JokeDisplayFragment extends Fragment implements JokeAsyncTask.Async
 
     @Override
     public void updateJoke(String joke) {
-        ((MainActivity) getActivity()).dismissProgressDialog();
+        MainActivity activity = ((MainActivity) getActivity());
+        if(activity != null){
+            activity.dismissProgressDialog();
+        }
         Intent intent = new Intent(getActivity(), JokeActivity.class);
         intent.putExtra(JokeUtils.JOKE, joke);
         startActivity(intent);

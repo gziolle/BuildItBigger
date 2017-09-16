@@ -29,6 +29,7 @@ public class JokeDisplayFragment extends Fragment implements JokeAsyncTask.Async
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         mInterstitialAd = new InterstitialAd(getActivity());
         mInterstitialAd.setAdUnitId(getString(R.string.banner_ad_unit_id));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
@@ -70,7 +71,10 @@ public class JokeDisplayFragment extends Fragment implements JokeAsyncTask.Async
         mInterstitialAd.setAdListener(new AdListener(){
             @Override
             public void onAdClosed() {
-                ((MainActivity)getActivity()).dismissProgressDialog();
+                MainActivity activity = ((MainActivity) getActivity());
+                if(activity != null){
+                    activity.dismissProgressDialog();
+                }
                 Intent intent = new Intent(getActivity(), JokeActivity.class);
                 intent.putExtra(JokeUtils.JOKE, finalJoke);
                 startActivity(intent);
