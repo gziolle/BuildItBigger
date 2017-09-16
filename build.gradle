@@ -26,6 +26,7 @@ class CustomTestTask extends DefaultTask{
 }
 
 task customTestTask{
+    group = 'Verification'
     dependsOn(['startGCEServer','runTests','shutdownServer'])
 }
 
