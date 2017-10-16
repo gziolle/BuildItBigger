@@ -1,139 +1,41 @@
-# Gradle for Android and Java Final Project
+Build It Bigger
+======
 
-In this project, you will create an app with multiple flavors that uses
-multiple libraries and Google Cloud Endpoints. The finished app will consist
-of four modules. A Java library that provides jokes, a Google Cloud Endpoints
-(GCE) project that serves those jokes, an Android Library containing an
-activity for displaying jokes, and an Android app that fetches jokes from the
-GCE module and passes them to the Android Library for display.
+This is "Build It Bigger" - part of Udacity's Android Developer Nanodegree.
+The purpose of this project was to build an app with multiple flavors that uses multiple libraries and Google Cloud Endpoint.
 
-## Why this Project
+The project contains four modules:
 
-As Android projects grow in complexity, it becomes necessary to customize the
-behavior of the Gradle build tool, allowing automation of repetitive tasks.
-Particularly, factoring functionality into libraries and creating product
-flavors allow for much bigger projects with minimal added complexity.
+1. A Java library that provides jokes.
+2. A Google Cloud Endpoint (GCE) project that provides those jokes to the Java library.
+3. An Android Library containing an activity for displaying jokes.
+4. An Android app that fetches jokes from the GCE module and passes them to the Android Library for display. It has paid and free versions.
 
-##What Will I Learn?
+Instructions
+------
+This project runs properly on a Android Virtual Device. You first need to run the Endpoint (jokeserver) and then the app. 
+If you want to test it using a real device, please follow the instructions below:
 
-You will learn the role of Gradle in building Android Apps and how to use
-Gradle to manage apps of increasing complexity. You'll learn to:
+1. Create a gradle.properties file inside your user's gradle file. On Windows, this is usually located at: `C:\Users\<username>\.gradle`
+2. Edit this file and put the following line: `MyIpAddress="http://IP-ADDRESS:8080/_ah/api/"`
+3. Replace the IP-ADDRESS part with the IP address your real device is connected to.
+4. Save the file and run jokeserver again.
 
-* Add free and paid flavors to an app, and set up your build to share code between them
-* Factor reusable functionality into a Java library
-* Factor reusable Android functionality into an Android library
-* Configure a multi project build to compile your libraries and app
-* Use the Gradle App Engine plugin to deploy a backend
-* Configure an integration test suite that runs against the local App Engine development server
+Libraries
+------
 
-##How Do I Complete this Project?
+This project uses the following library:
 
-### Step 0: Starting Point
+[FindBugs Jsr305](https://mvnrepository.com/artifact/com.google.code.findbugs/jsr305)
 
-This is the starting point for the final project, which is provided to you in
-the [course repository](https://github.com/udacity/ud867/tree/master/FinalProject). It
-contains an activity with a banner ad and a button that purports to tell a
-joke, but actually just complains. The banner ad was set up following the
-instructions here:
 
-https://developers.google.com/mobile-ads-sdk/docs/admob/android/quick-start
+License
+------
 
-You may need to download the Google Repository from the Extras section of the
-Android SDK Manager.
+> Copyright @2017 Guilherme Ziolle
 
-When you can build an deploy this starter code to an emulator, you're ready to
-move on.
+> Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-### Step 1: Create a Java library
+> http://www.apache.org/licenses/LICENSE-2.0
 
-Your first task is to create a Java library that provides jokes. Create a new
-Gradle Java project either using the Android Studio wizard, or by hand. Then
-introduce a project dependency between your app and the new Java Library. If
-you need review, check out demo 4.01 from the course code.
-
-Make the button display a toast showing a joke retrieved from your Java joke
-telling library.
-
-### Step 2: Create an Android Library
-
-Create an Android Library containing an Activity that will display a joke
-passed to it as an intent extra. Wire up project dependencies so that the
-button can now pass the joke from the Java Library to the Android Library.
-
-For review on how to create an Android library, check out demo 4.03. For a
-refresher on intent extras, check out;
-
-http://developer.android.com/guide/components/intents-filters.html
-
-### Step 3: Create GCE Module
-
-This next task will be pretty tricky. Instead of pulling jokes directly from
-our Java library, we'll set up a Google Cloud Endpoints development server,
-and pull our jokes from there. Follow the instructions in the following
-tutorial to add a Google Could Endpoints module to your project:
-
-https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints
-
-Introduce a project dependency between your Java library and your GCE module,
-and modify the GCE starter code to pull jokes from your Java library. Create
-an Async task to retrieve jokes. Make the button kick off a task to retrieve a
-joke, then launch the activity from your Android Library to display it.
-
-### Step 4: Add Functional Tests
-
-Add code to test that your Async task successfully retrieves a non-empty
-string. For a refresher on setting up Android tests, check out demo 4.09.
-
-### Step 5: Add a Paid Flavor
-
-Add free and paid product flavors to your app. Remove the ad (and any
-dependencies you can) from the paid flavor.
-
-## Optional Tasks
-
-For extra practice to make your project stand out, complete the following tasks.
-
-### Add Interstitial Ad
-
-Follow these instructions to add an interstitial ad to the free version.
-Display the ad after the user hits the button, but before the joke is shown.
-
-https://developers.google.com/mobile-ads-sdk/docs/admob/android/interstitial
-
-### Add Loading Indicator
-
-Add a loading indicator that is shown while the joke is being retrieved and
-disappears when the joke is ready. The following tutorial is a good place to
-start:
-
-http://www.tutorialspoint.com/android/android_loading_spinner.htm
-
-### Configure Test Task
-
-To tie it all together, create a Gradle task that:
-
-1. Launches the GCE local development server
-2. Runs all tests
-3. Shuts the server down again
-
-# Rubric
-
-### Required Components
-
-* Project contains a Java library for supplying jokes
-* Project contains an Android library with an activity that displays jokes passed to it as intent extras.
-* Project contains a Google Cloud Endpoints module that supplies jokes from the Java library. Project loads jokes from GCE module via an async task.
-* Project contains connected tests to verify that the async task is indeed loading jokes.
-* Project contains paid/free flavors. The paid flavor has no ads, and no unnecessary dependencies.
-
-### Required Behavior
-
-* App retrieves jokes from Google Cloud Endpoints module and displays them via an Activity from the Android Library.
-
-### Optional Components
-
-Once you have a functioning project, consider adding more features to test your Gradle and Android skills. Here are a few suggestions:
-
-* Make the free app variant display interstitial ads between the main activity and the joke-displaying activity.
-* Have the app display a loading indicator while the joke is being fetched from the server.
-* Write a Gradle task that starts the GCE dev server, runs all the Android tests, and shuts down the dev server.
+> Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
